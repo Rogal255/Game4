@@ -3,6 +3,7 @@
 void Game::initWindow()
 {
 	this->m_Window.create(sf::VideoMode(800, 600), "Game 4", sf::Style::Close | sf::Style::Titlebar);
+	// std::cout << "Texture max size: " << sf::Texture::getMaximumSize() << '\n';
 }
 
 void Game::initPlayer()
