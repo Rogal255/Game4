@@ -5,6 +5,7 @@
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
+//#include <SFML/System.hpp>
 
 class Game
 {
@@ -18,7 +19,7 @@ class Game
 	void initPlayer();
 
 	void handleEvents();
-	void update();
+	void update(sf::Time t_DeltaTime);
 	void render();
 
 public:

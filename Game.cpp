@@ -30,9 +30,8 @@ void Game::handleEvents()
 	}
 }
 
-void Game::update()
+void Game::update(sf::Time t_DeltaTime)
 {
-	this->handleEvents();
 	this->m_Player->update();
 }
 
@@ -52,9 +51,20 @@ Game::Game()
 
 void Game::run()
 {
+	sf::Clock frameKeeper;
+	sf::Time timeSinceLastUpdate{ sf::Time::Zero };
+	sf::Time timePerFrame{ sf::seconds(1.f / 60.f) };
+
 	while (this->m_Window.isOpen())
 	{
-		this->update();
+		this->handleEvents();
+		timeSinceLastUpdate += frameKeeper.restart();
+		while (timeSinceLastUpdate > timePerFrame)
+		{
+			timeSinceLastUpdate -= timePerFrame;
+			this->handleEvents();
+			this->update(timePerFrame);
+		}
 		this->render();
 	}
 }
